@@ -1,0 +1,53 @@
+<div class="grid">
+
+  <div class="card" *ngFor="let produto of produtos">
+
+    <img [src]="produto.imagem" alt="Produto">
+
+    <h3>{{ produto.nome }}</h3>
+
+    <p class="preco">
+      R$ {{ produto.precoAtual }}
+    </p>
+
+    <div class="acoes">
+
+      <!-- EDITAR -->
+<button class="editar" [routerLink]="['/product-register', produto.id]">
+  Editar
+</button>
+
+      <!-- EXCLUIR -->
+      <button class="excluir" (click)="deletar(produto.id)">
+        Excluir
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 🔥 FORM DE EDIÇÃO -->
+<div class="edit-form" *ngIf="produtoEditando">
+
+  <h3>Editar Produto</h3>
+
+  <input [(ngModel)]="produtoEditando.nome" placeholder="Nome">
+  <input [(ngModel)]="produtoEditando.marca" placeholder="Marca">
+  <input [(ngModel)]="produtoEditando.precoAtual" placeholder="Preço Atual">
+  <input [(ngModel)]="produtoEditando.imagem" placeholder="Imagem">
+
+  <div class="acoes">
+
+    <button (click)="salvarEdicao()">
+      Salvar
+    </button>
+
+    <button (click)="cancelar()">
+      Cancelar
+    </button>
+
+  </div>
+
+</div>

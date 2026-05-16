@@ -1,97 +1,116 @@
 .top-bar {
-  top: 0px;
-  left: 50%;
-  transform: translateX(0%);
-
-  width: 1500px;
-  background-color: #dcdcdc;
-
-  padding: 8px 0;
-  font-size: 13px;
+  width: 100%;
+  background: var(--dourado);
+  color: #0a0a0a;
+  padding: 7px 0;
+  font-size: 12px;
+  font-weight: 600;
   text-align: center;
-
-  border-radius: 8px;
-  z-index: 1000;
+  letter-spacing: 1px;
 }
 
-img {
-  width: 70px;
-}
-
-.header {
-  padding: 10px 40px;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo {
-  width: 70px;
+.home {
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 15px 40px;
+  padding: 18px 48px;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--borda);
 }
 
-.logo {
+.logo-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.logo img {
-  width: 40px;
+.logo-container img {
+  width: 42px;
+  opacity: 0.9;
 }
 
-.logo span {
+.logo-container h1 {
+  font-family: 'Cinzel', serif;
   font-size: 20px;
-  font-weight: bold;
+  color: var(--dourado);
+  letter-spacing: 4px;
+  font-weight: 600;
 }
 
 .search input {
-  width: 600px;
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: 2px solid #ccc;
+  width: 380px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 1px solid var(--borda);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--texto);
+  font-size: 13px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.search input::placeholder {
+  color: var(--texto-suave);
+}
+
+.search input:focus {
+  border-color: var(--dourado);
 }
 
 .actions {
   display: flex;
-  gap: 25px;
+  gap: 30px;
+  position: relative;
+  z-index: 10;
 }
 
 .item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 12px;
+  font-size: 11px;
   cursor: pointer;
+  color: var(--texto-suave);
+  gap: 4px;
+  transition: color 0.3s;
+}
+
+.item:hover {
+  color: var(--dourado);
 }
 
 .item i {
   font-size: 18px;
 }
 
-html {
-  scroll-behavior: smooth;
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  padding: 11px 0;
+  background: var(--fundo2);
+  border-bottom: 1px solid var(--borda);
 }
 
 .menu a {
   text-decoration: none;
-  color: black;
-  font-weight: 500;
+  color: var(--texto-suave);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s;
 }
 
-.menu {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: -20px;
+.menu a:hover {
+  color: var(--dourado);
 }

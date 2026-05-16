@@ -1,46 +1,52 @@
-<body>
+<div class="container">
 
-  <div class="container">
-    <h2>Cadastro de Perfume</h2>
+  <h2 *ngIf="!idEditando">Cadastro de Perfume</h2>
+  <h2 *ngIf="idEditando">Editar Perfume</h2>
 
-    <form>
-      
-      <label>Nome do Perfume</label>
-      <input type="text" name="nome" required>
+  <form (ngSubmit)="cadastrarPerfume()">
 
-      <label>Marca</label>
-      <input type="text" name="marca" required>
+    <label>Nome do Perfume</label>
+    <input
+      type="text"
+      name="nome"
+      [(ngModel)]="novoPerfume.nome"
+      required
+    >
 
-      <label>Volume (ml)</label>
-      <input type="number" name="volume" required>
+    <label>Marca</label>
+    <input
+      type="text"
+      name="marca"
+      [(ngModel)]="novoPerfume.marca"
+      required
+    >
 
-      <label>Família Olfativa</label>
-      <select name="familia">
-        <option>Floral</option>
-        <option>Amadeirado</option>
-        <option>Cítrico</option>
-        <option>Oriental</option>
-      </select>
+    <label>Preço sem desconto</label>
+    <input
+      type="number"
+      name="precoAntigo"
+      [(ngModel)]="novoPerfume.precoAntigo"
+      required
+    >
 
-      <label>Concentração</label>
-      <select name="concentracao">
-        <option>EDT</option>
-        <option>EDP</option>
-        <option>Parfum</option>
-      </select>
+    <label>Preço com desconto</label>
+    <input
+      type="number"
+      name="precoAtual"
+      [(ngModel)]="novoPerfume.precoAtual"
+      required
+    >
 
-      <label>Preço de Venda</label>
-      <input type="number" step="0.01" name="preco" required>
+    <label>Imagem do Produto</label>
+    <input
+      type="file"
+      (change)="selecionarImagem($event)"
+    >
 
-      <label>Quantidade em Estoque</label>
-      <input type="number" name="estoque" required>
+    <button type="submit">
+      {{ idEditando ? 'Atualizar' : 'Cadastrar' }}
+    </button>
 
-      <label>Imagem do Produto</label>
-      <input type="file" name="imagem">
+  </form>
 
-      <button type="submit">Cadastrar</button>
-
-    </form>
-  </div>
-
-</body>
+</div>

@@ -1,69 +1,49 @@
+<!-- header pronto -->
 <div class="top-bar">
   10% OFF no site com cupom PRIMEIRACOMPRA
 </div>
 
 <section class="home">
-
   <header class="header">
 
-  <div class="logo-container">
-    <a routerLink="/home"><img src="perfume.png" class="logo"></a>
-    <a routerLink="/home"><h1>Essency</h1></a>
-  </div>
-
-  <div class="search">
-    <input 
-  type="text" 
-  placeholder="O que está buscando hoje?"
-  [(ngModel)]="busca"
-  (input)="filtrarProdutos()"
-  />
-
-<div class="resultado-box" *ngIf="busca">
-
-  <div *ngIf="resultados.length > 0">
-    <button 
-  *ngFor="let item of resultados" 
-  class="item-sugestao"
-  (click)="selecionarProduto(item)"
->
-  <img [src]="item.img">
-  <span>{{ item.nome }}</span>
-</button>
-  </div>
-
-</div>
-
-  </div>
-
-  <div class="actions">
-
-    <div routerLink="/favorites" class="item">
-      <i class="fa-regular fa-heart"></i>
-      <span>Favoritos</span>
+    <div class="logo-container">
+      <a routerLink="/home"><img src="perfume.png" class="logo"></a>
+      <a routerLink="/home"><h1>Essency</h1></a>
     </div>
 
-    <div routerLink="/login" class="item">
-      <i class="fa-regular fa-user"></i>
-      <span>Entrar</span>
+    <div class="search">
+      <input type="text" placeholder="O que está buscando hoje?"/>
+      <div class="resultado-box"></div>
     </div>
 
-    <div routerLink="/cart" class="item">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <span>Meu Carrinho</span>
+    <div class="actions">
+
+      <div routerLink="/favorites" class="item">
+        <i class="fa-regular fa-heart"></i>
+        <span>Favoritos</span>
+      </div>
+
+      <div routerLink="/login" class="item">
+        <i class="fa-regular fa-user"></i>
+        <span>Entrar</span>
+      </div>
+
+      <div routerLink="/cart" class="item">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>Meu Carrinho</span>
+      </div>
+
+      <div routerLink="/admin-page" class="item">
+        <i class="fa-solid fa-key"></i>
+        <span>Admin</span>
+      </div>
+
     </div>
 
-    <div routerLink="/admin-page" class="item">
-      <i class="fa-solid fa-key"></i>
-      <span>Admin</span>
-    </div>
-
-  </div>
-
-</header>
+  </header>
 </section>
 
 <div class="menu">
-    <a href="#male">Masculinos</a>
-    <a href="#feminine">Femininos</a>
+  <a href="#male">Masculinos</a>
+  <a href="#feminine">Femininos</a>
 </div>

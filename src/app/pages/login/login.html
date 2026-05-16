@@ -1,1 +1,97 @@
-<p>login works!</p>
+<!-- ============================================================ -->
+<!-- PÁGINA DE LOGIN                                              -->
+<!-- Tem 3 telas: login, criar conta e recuperar senha           -->
+<!-- A tela visível é controlada pela variável "tela" no .ts     -->
+<!-- ============================================================ -->
+<div class="login-page">
+
+  <div class="login-card fade-in">
+
+    <!-- Logo no topo do card -->
+    <div class="login-logo">
+      <span>ESSENCY</span>
+    </div>
+
+    <!-- ======================== -->
+    <!-- TELA 1: LOGIN            -->
+    <!-- Aparece quando tela === 'login' -->
+    <!-- ======================== -->
+    <div *ngIf="tela === 'login'">
+      <h2>Bem-vindo</h2>
+
+      <div class="campo">
+        <label>Email</label>
+        <!-- [(ngModel)] liga o input à variável loginEmail do .ts -->
+        <input type="email" [(ngModel)]="loginEmail" placeholder="seu@email.com">
+      </div>
+
+      <div class="campo">
+        <label>Senha</label>
+        <input type="password" [(ngModel)]="loginSenha" placeholder="••••••••">
+      </div>
+
+      <!-- Mensagem de erro ou sucesso — só aparece se tiver texto -->
+      <p class="msg" [class.erro]="loginErro" *ngIf="loginMsg">{{ loginMsg }}</p>
+
+      <!-- (click) chama o método entrar() no .ts ao clicar -->
+      <button class="btn-primary" (click)="entrar()">Entrar</button>
+
+      <div class="links">
+        <a (click)="mostrar('register')">Criar conta</a>
+        <a (click)="mostrar('forgot')">Esqueci minha senha</a>
+      </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- TELA 2: CRIAR CONTA      -->
+    <!-- ======================== -->
+    <div *ngIf="tela === 'register'">
+      <h2>Criar Conta</h2>
+
+      <div class="campo">
+        <label>Nome</label>
+        <input type="text" [(ngModel)]="regNome" placeholder="Seu nome">
+      </div>
+
+      <div class="campo">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="regEmail" placeholder="seu@email.com">
+      </div>
+
+      <div class="campo">
+        <label>Senha</label>
+        <input type="password" [(ngModel)]="regSenha" placeholder="••••••••">
+      </div>
+
+      <p class="msg" [class.erro]="regErro" *ngIf="regMsg">{{ regMsg }}</p>
+
+      <button class="btn-primary" (click)="registrar()">Cadastrar</button>
+
+      <div class="links">
+        <a (click)="mostrar('login')">Já tenho conta</a>
+      </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- TELA 3: RECUPERAR SENHA  -->
+    <!-- ======================== -->
+    <div *ngIf="tela === 'forgot'">
+      <h2>Recuperar Senha</h2>
+
+      <div class="campo">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="recEmail" placeholder="seu@email.com">
+      </div>
+
+      <p class="msg" *ngIf="recMsg">{{ recMsg }}</p>
+
+      <button class="btn-primary" (click)="recuperar()">Enviar</button>
+
+      <div class="links">
+        <a (click)="mostrar('login')">Voltar ao login</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,87 +1,192 @@
-  <section class="banner">
-    <h2>
-      Sua essência, sua marca, o toque final do seu estilo e perfume-se de confiança
-    </h2>
-  </section>
+<!-- carrossel pronto -->
+<section class="hero-carousel">
 
-<div style="height: 1000px;"></div>
+  <div class="hero-slides" [style.transform]="'translateX(-' + heroIndex * 100 + '%)'">
 
-<section class="products">
-
-  <h2 class="title">PRODUTOS MAIS VENDIDOS</h2>
-
-  <div class="product-list">
-
-    <div class="product-card">
-
-      <a routerLink="/produto" class="produto-click">
-      <img src="essence-removebg-preview.png">
-
-      <p class="name">Natura</p>
-      <p class="name">Homem Essence 100ml</p>
-      </a>
-      <p class="price">De: R$229,29</p>
-      <p class="price">Por: R$189,97</p>
-      <p class="brand">Ou 6x de R$31,66 sem juros</p>
-      <button (click)="adicionarFavorito()">
-      Adicionar aos favoritos
-      </button>
+    <div class="hero-slide">
+      <div class="slide-img-wrap"><img src="lemaleelixir-removebg-preview.png" alt="Le Male Elixir"></div>
+      <div class="slide-info">
+        <p class="slide-marca">Jean Paul Gaultier</p>
+        <h2 class="slide-nome">Le Male Elixir</h2>
+        <p class="slide-preco">R$599,00</p>
+        <button class="slide-btn" (click)="irParaProdutos()">Ver Coleção</button>
+      </div>
     </div>
 
-    <div class="product-card">
-      <img src="azzaro-removebg-preview.png">
-      <p class="name">Azzaro</p>
-      <p class="name">The Most Wanted 100ml</p>
-      <p class="price">De: R$689,79</p>
-      <p class="price">Por: R$633,97</p>
-      <p class="brand">Ou 6x de R$105,65 sem juros</p>
-      <button>Adicionar aos favoritos</button>
+    <div class="hero-slide">
+      <div class="slide-img-wrap"><img src="SauvageDior-removebg-preview.png" alt="Sauvage Dior"></div>
+      <div class="slide-info">
+        <p class="slide-marca">Dior</p>
+        <h2 class="slide-nome">Sauvage EDP</h2>
+        <p class="slide-preco">R$469,89</p>
+        <button class="slide-btn" (click)="irParaProdutos()">Ver Coleção</button>
+      </div>
     </div>
 
-    <div class="product-card">
-    <div class="produto-click" (click)="irParaProduto()">
-    <img src="o.61856-removebg-preview.png">
-    <p class="name">Jean Paul Gaultier</p>
-    <p class="name">Le Male Le Parfum 100ml</p>
-    </div>
-    <p class="price">De: R$599,79</p>
-    <p class="price">Por: R$469,89</p>
-    <p class="brand">Ou 6x de R$78,31 sem juros</p>
-    <button (click)="adicionarFavorito()">
-    Adicionar aos favoritos
-    </button>
+    <div class="hero-slide">
+      <div class="slide-img-wrap"><img src="Aventus_Creed-removebg-preview.png" alt="Aventus Creed"></div>
+      <div class="slide-info">
+        <p class="slide-marca">Creed</p>
+        <h2 class="slide-nome">Aventus</h2>
+        <p class="slide-preco">R$898,20</p>
+        <button class="slide-btn" (click)="irParaProdutos()">Ver Coleção</button>
+      </div>
     </div>
 
-    <div class="product-card">
-      <img src="o.48965-removebg-preview.png">
-
-      <p class="name">Natura</p>
-      <p class="name">Homem Sagaz 100ml</p>
-      <p class="price">De: R$289,99</p>
-      <p class="price">Por: R$249,99</p>
-      <p class="brand">Ou 6x de R$41,66 sem juros</p>
-      <button>Adicionar aos favoritos</button>
+    <div class="hero-slide">
+      <div class="slide-img-wrap"><img src="Good_Girl_Carolina_Herrera-removebg-preview.png" alt="Good Girl"></div>
+      <div class="slide-info">
+        <p class="slide-marca">Carolina Herrera</p>
+        <h2 class="slide-nome">Good Girl</h2>
+        <p class="slide-preco">R$359,99</p>
+        <button class="slide-btn" (click)="irParaProdutos()">Ver Coleção</button>
+      </div>
     </div>
 
-    <div class="product-card">
-      <img src="61U5NZv08hL._AC_UF1000_1000_QL80_-removebg-preview.png">
-      <p class="name">OBoticario</p>
-      <p class="name">The Blend Bourbon100ml</p>
-      <p class="price">De: R$379,80</p>
-      <p class="price">Por: R$344,00</p>
-      <p class="brand">Ou 6x de R$57,33 sem juros</p>
-      <button>Adicionar aos favoritos</button>
+    <div class="hero-slide">
+      <div class="slide-img-wrap"><img src="Coco_Noir_Chanel-removebg-preview.png" alt="Coco Noir"></div>
+      <div class="slide-info">
+        <p class="slide-marca">Chanel</p>
+        <h2 class="slide-nome">Coco Noir</h2>
+        <p class="slide-preco">R$609,99</p>
+        <button class="slide-btn" (click)="irParaProdutos()">Ver Coleção</button>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="slide-img-wrap"><img src="Bleu_de_Chanel_Eau_de_Parfum_Chanel-removebg-preview.png" alt="Bleu de Chanel"></div>
+      <div class="slide-info">
+        <p class="slide-marca">Chanel</p>
+        <h2 class="slide-nome">Bleu de Chanel</h2>
+        <p class="slide-preco">R$880,19</p>
+        <button class="slide-btn" (click)="irParaProdutos()">Ver Coleção</button>
+      </div>
     </div>
 
   </div>
 
+  <button class="hero-btn hero-btn-left"  (click)="heroVoltar()">&#8249;</button>
+  <button class="hero-btn hero-btn-right" (click)="heroAvancar()">&#8250;</button>
+
+  <div class="hero-dots">
+    <span *ngFor="let d of heroSlides; let i = index"
+          class="dot" [class.ativo]="i === heroIndex"
+          (click)="heroIndex = i">
+    </span>
+  </div>
+
 </section>
 
-<section id="male" style="margin-top: 500px;">
-  <h2>Perfumes Masculinos</h2>
+<!-- masculinos pronto -->
+<section id="male" class="secao-produtos fade-in">
+  <h2 class="section-title">Perfumes <span class="destaque-ouro">Masculinos</span></h2>
+
+  <div class="perfumes-container">
+
+    <div class="product-card">
+      <div class="card-img-wrap"><img src="lemaleelixir-removebg-preview.png" alt="Le Male Elixir"></div>
+      <div class="card-body">
+        <p class="card-marca">Jean Paul Gaultier</p>
+        <p class="card-nome">Le Male Elixir 100ml</p>
+        <p class="card-preco-de">De: R$679,40</p>
+        <p class="card-preco-por">R$599,00</p>
+        <p class="card-parcel">6x de R$99,83 sem juros</p>
+        <button class="btn-fav">♡ Favoritar</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap"><img src="SauvageDior-removebg-preview.png" alt="Sauvage Dior"></div>
+      <div class="card-body">
+        <p class="card-marca">Dior</p>
+        <p class="card-nome">Sauvage EDP 100ml</p>
+        <p class="card-preco-de">De: R$499,99</p>
+        <p class="card-preco-por">R$469,89</p>
+        <p class="card-parcel">6x de R$78,31 sem juros</p>
+        <button class="btn-fav">♡ Favoritar</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap"><img src="NaturaDOMm-removebg-preview.png" alt="Natura DOM"></div>
+      <div class="card-body">
+        <p class="card-marca">Natura</p>
+        <p class="card-nome">Homem DOM 100ml</p>
+        <p class="card-preco-de">De: R$289,97</p>
+        <p class="card-preco-por">R$249,69</p>
+        <p class="card-parcel">6x de R$41,66 sem juros</p>
+        <button class="btn-fav">♡ Favoritar</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap"><img src="Aventus_Creed-removebg-preview.png" alt="Aventus Creed"></div>
+      <div class="card-body">
+        <p class="card-marca">Creed</p>
+        <p class="card-nome">Aventus 100ml</p>
+        <p class="card-preco-de">De: R$929,65</p>
+        <p class="card-preco-por">R$898,20</p>
+        <p class="card-parcel">6x de R$149,70 sem juros</p>
+        <button class="btn-fav">♡ Favoritar</button>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section id="feminine" style="margin-top: 500px;">
-  <h2>Perfumes Femininos</h2>
-</section>
+<!-- femininos pronto -->
+<section id="feminine" class="secao-produtos fade-in">
+  <h2 class="section-title">Perfumes <span class="destaque-ouro">Femininos</span></h2>
 
+  <div class="perfumes-container">
+
+    <div class="product-card">
+      <div class="card-img-wrap"><img src="Good_Girl_Carolina_Herrera-removebg-preview.png" alt="Good Girl"></div>
+      <div class="card-body">
+        <p class="card-marca">Carolina Herrera</p>
+        <p class="card-nome">Good Girl 100ml</p>
+        <p class="card-preco-de">De: R$399,99</p>
+        <p class="card-preco-por">R$359,99</p>
+        <p class="card-parcel">6x de R$59,99 sem juros</p>
+        <button class="btn-fav">♡ Favoritar</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap"><img src="Coco_Noir_Chanel-removebg-preview.png" alt="Coco Noir"></div>
+      <div class="card-body">
+        <p class="card-marca">Chanel</p>
+        <p class="card-nome">Coco Noir 100ml</p>
+        <p class="card-preco-de">De: R$649,99</p>
+        <p class="card-preco-por">R$609,99</p>
+        <p class="card-parcel">6x de R$101,66 sem juros</p>
+        <button class="btn-fav">♡ Favoritar</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap"><img src="Yara_Lattafa-removebg-preview.png" alt="Yara Lattafa"></div>
+      <div class="card-body">
+        <p class="card-marca">Lattafa</p>
+        <p class="card-nome">Yara Lattafa 100ml</p>
+        <p class="card-preco-de">De: R$319,25</p>
+        <p class="card-preco-por">R$249,69</p>
+        <p class="card-parcel">6x de R$41,61 sem juros</p>
+        <button class="btn-fav">♡ Favoritar</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap"><img src="Scandal_Jean_Paul_Gaultier-removebg-preview.png" alt="Scandal JPG"></div>
+      <div class="card-body">
+        <p class="card-marca">Jean Paul Gaultier</p>
+        <p class="card-nome">Scandal JPG 100ml</p>
+        <p class="card-preco-de">De: R$609,78</p>
+        <p class="card-preco-por">R$579,99</p>
+        <p class="card-parcel">6x de R$96,66 sem juros</p>
+        <button class="btn-fav">♡ Favoritar</button>
+      </div>
+    </div>
+
+  </div>
+</section>

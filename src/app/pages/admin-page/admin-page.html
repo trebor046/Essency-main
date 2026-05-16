@@ -1,10 +1,22 @@
-<a routerLink="/product-list">Lista de produtos</a>
+<div class="admin-page">
 
+  <div class="admin-header">
+    <h1>Painel <span class="destaque">Admin</span></h1>
+    <p class="admin-sub">Gerencie os produtos da loja</p>
+  </div>
 
-<ul>
-@for(route of routeList; track route){
-    <li>
-        <a routerLink="{{route.link}}">{{route.label}}</a>
-    </li>
-}
-</ul>
+  <div class="admin-cards">
+    <a routerLink="/product-crud" class="admin-card">
+      <div class="admin-card-icon">📦</div>
+      <h3>Lista de Produtos</h3>
+      <p>Ver, editar e remover produtos cadastrados</p>
+    </a>
+
+    <a routerLink="/product-register" class="admin-card">
+      <div class="admin-card-icon">➕</div>
+      <h3>Cadastrar Produto</h3>
+      <p>Adicionar um novo perfume ao catálogo</p>
+    </a>
+  </div>
+
+</div>

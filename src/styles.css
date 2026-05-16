@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cinzel:wght@600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --dourado: #c9a84c;
+  --dourado-claro: #e2c97e;
+  --dourado-suave: rgba(201, 168, 76, 0.15);
+  --verde: #2ecc71;
+  --verde-suave: rgba(46, 204, 113, 0.10);
+  --fundo: #0a0a0a;
+  --fundo2: #111111;
+  --fundo3: #181818;
+  --texto: #f0ece4;
+  --texto-suave: #8a8580;
+  --borda: rgba(201, 168, 76, 0.12);
+  --borda-hover: rgba(201, 168, 76, 0.35);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  min-height: 100vh;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
