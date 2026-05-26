@@ -23,9 +23,22 @@
         <span>Favoritos</span>
       </div>
 
-      <div routerLink="/login" class="item">
+      <div *ngIf="!usuario" routerLink="/login" class="item">
         <i class="fa-regular fa-user"></i>
         <span>Entrar</span>
+      </div>
+
+      <div *ngIf="usuario" class="item user-menu" (click)="toggleMenu($event)">
+        <i class="fa-regular fa-user"></i>
+        <span>{{ usuario.nome }}</span>
+        <div class="dropdown" *ngIf="menuAberto" (click)="$event.stopPropagation()">
+          <div class="dropdown-item">
+            <i class="fa-regular fa-user"></i> Minha Conta
+          </div>
+          <div class="dropdown-item sair" (click)="sair()">
+            <i class="fa-solid fa-right-from-bracket"></i> Sair
+          </div>
+        </div>
       </div>
 
       <div routerLink="/cart" class="item">
@@ -33,7 +46,7 @@
         <span>Meu Carrinho</span>
       </div>
 
-      <div routerLink="/admin-page" class="item">
+      <div *ngIf="usuario?.isAdmin" routerLink="/admin-page" class="item">
         <i class="fa-solid fa-key"></i>
         <span>Admin</span>
       </div>
