@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -21,11 +21,12 @@ export class Login {
   loginMsg   = '';
   loginErro  = false;
 
-  regNome  = '';
-  regEmail = '';
-  regSenha = '';
-  regMsg   = '';
-  regErro  = false;
+  regNome      = '';
+  regEmail     = '';
+  regTelefone  = '';
+  regSenha     = '';
+  regMsg       = '';
+  regErro      = false;
 
   recEmail = '';
   recMsg   = '';
@@ -33,6 +34,7 @@ export class Login {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // só verifica localStorage no navegador, nunca no servidor
@@ -58,22 +60,32 @@ export class Login {
       return;
     }
 
+    // Login ADM fixo
+    if (this.loginEmail === 'admin@essency.com' && this.loginSenha === 'admin123') {
+      const admin = { nome: 'Administrador', email: this.loginEmail, isAdmin: true };
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('usuarioLogado', JSON.stringify(admin));
+      }
+      this.loginErro = false;
+      this.loginMsg  = '✓ Bem-vindo, Administrador!';
+      setTimeout(() => this.router.navigate(['/home']), 800);
+      return;
+    }
+
     this.http.get<any[]>(`http://localhost:3000/users?email=${this.loginEmail}`)
       .subscribe(users => {
 
         if (users.length === 0) {
           this.loginErro = true;
-          this.loginMsg  = '❌ Email não encontrado. Redirecionando para criar conta...';
-          setTimeout(() => {
-            this.regEmail = this.loginEmail;
-            this.mostrar('register');
-          }, 1500);
+          this.loginMsg  = '❌ Conta não encontrada. Verifique o email ou crie uma conta.';
+          this.cdr.detectChanges();
           return;
         }
 
         if (users[0].senha !== this.loginSenha) {
           this.loginErro = true;
-          this.loginMsg  = '❌ Senha incorreta. Verifique e tente novamente.';
+          this.loginMsg  = '❌ Senha incorreta.';
+          this.cdr.detectChanges();
           return;
         }
 
@@ -82,30 +94,42 @@ export class Login {
         }
 
         this.loginErro = false;
-        this.loginMsg  = `Bem-vindo, ${users[0].nome}!`;
+        this.loginMsg  = `✓ Bem-vindo, ${users[0].nome}!`;
+        this.cdr.detectChanges();
         setTimeout(() => this.router.navigate(['/home']), 800);
       });
   }
 
   registrar() {
     this.regMsg = '';
-    if (!this.regNome || !this.regEmail || !this.regSenha) {
+    if (!this.regNome || !this.regEmail || !this.regTelefone || !this.regSenha) {
       this.regErro = true;
       this.regMsg  = '❌ Preencha todos os campos.';
       return;
     }
 
-    this.http.post('http://localhost:3000/users', {
-      email: this.regEmail, senha: this.regSenha, nome: this.regNome
-    }).subscribe(() => {
-      this.regErro = false;
-      this.regMsg  = '✓ Conta criada! Entrando...';
-      setTimeout(() => {
-        this.loginEmail = this.regEmail;
-        this.loginSenha = this.regSenha;
-        this.entrar();
-      }, 900);
-    });
+    this.http.get<any[]>(`http://localhost:3000/users?email=${this.regEmail}`)
+      .subscribe(users => {
+        if (users.length > 0) {
+          this.regErro = true;
+          this.regMsg  = '❌ Este email já está cadastrado.';
+          this.cdr.detectChanges();
+          return;
+        }
+
+        this.http.post('http://localhost:3000/users', {
+          email: this.regEmail, senha: this.regSenha, nome: this.regNome,
+          telefone: this.regTelefone, isAdmin: false
+        }).subscribe(() => {
+          this.regErro = false;
+          this.regMsg  = '✓ Conta criada! Entrando...';
+          setTimeout(() => {
+            this.loginEmail = this.regEmail;
+            this.loginSenha = this.regSenha;
+            this.entrar();
+          }, 900);
+        });
+      });
   }
 
   recuperar() {
@@ -121,6 +145,7 @@ export class Login {
         } else {
           this.recMsg = `✓ Senha de "${users[0].nome}": ${users[0].senha}`;
         }
+        this.cdr.detectChanges();
       });
   }
 }

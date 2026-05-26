@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PerfumeService {
 
   private apiUrl = 'http://localhost:3000/perfumes';
@@ -29,5 +30,19 @@ export class PerfumeService {
   deletarPerfume(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+adicionarCarrinho(produto: any) {
+
+  const carrinho =
+    JSON.parse(localStorage.getItem('carrinho') || '[]');
+
+  carrinho.push(produto);
+
+  localStorage.setItem(
+    'carrinho',
+    JSON.stringify(carrinho)
+  );
+
+}
 
 }

@@ -1,1 +1,72 @@
-<p>favorites works!</p>
+<section class="favorites-page">
+
+  <h1 class="titulo">
+    Meus Favoritos
+  </h1>
+
+  <!-- SEM FAVORITOS -->
+  <div *ngIf="favoritos.length === 0" class="sem-favoritos">
+
+    <h2>
+      Nenhum perfume favoritado
+    </h2>
+
+  </div>
+
+  <!-- LISTA -->
+  <div class="perfumes-container">
+
+    <div class="product-card"
+         *ngFor="let perfume of favoritos; let i = index">
+
+      <!-- IMAGEM -->
+      <div class="card-img-wrap">
+
+        <img [src]="perfume.imagem"
+             [alt]="perfume.nome">
+
+      </div>
+
+      <!-- CONTEÚDO -->
+      <div class="card-body">
+
+        <!-- MARCA -->
+        <p class="card-marca">
+          {{ perfume.marca }}
+        </p>
+
+        <!-- NOME -->
+        <p class="card-nome">
+          {{ perfume.nome }}
+        </p>
+
+        <!-- PREÇO -->
+        <p class="card-preco">
+
+          R$ {{ perfume.precoAtual }}
+
+        </p>
+
+        <!-- PARCELAMENTO -->
+        <p class="card-parcel">
+
+          6x de R$
+          {{ (perfume.precoAtual / 6).toFixed(2) }}
+
+        </p>
+
+        <!-- REMOVER -->
+        <button class="btn-remover"
+                (click)="removerFavorito(i)">
+
+          Remover
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

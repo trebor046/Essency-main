@@ -13,42 +13,103 @@ import { PerfumeService } from '../../services/perfume';
 })
 export class ProductRegister implements OnInit {
 
-  novoPerfume: any = { nome: '', marca: '', precoAntigo: 0, precoAtual: 0, imagem: '' };
+  // Objeto que guarda os dados do formulário
+  novoPerfume: any = {
+    nome: '',
+    marca: '',
+    precoAntigo: 0,
+    precoAtual: 0,
+    imagem: '',
+    categoria: '',
+    banner: false
+  };
+
+  // Guarda o ID quando estiver editando um perfume
   idEditando: any = null;
 
   constructor(
-    private perfumeService: PerfumeService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private perfumeService: PerfumeService, // Service responsável pelo CRUD
+    private route: ActivatedRoute,          // Pega parâmetros da URL (ex: id)
+  ) { }
 
   ngOnInit() {
+
+    // Pega o ID da URL (caso exista)
     const id = this.route.snapshot.paramMap.get('id');
+
+    // Se existir ID, significa que é edição
     if (id) {
+
       this.idEditando = id;
-      this.perfumeService.getPerfumes().subscribe((data: any) => {
-        const produto = data.find((p: any) => p.id == id);
-        if (produto) this.novoPerfume = produto;
-      });
+
+      // Busca todos os perfumes para encontrar o que será editado
+      this.perfumeService.getPerfumes()
+        .subscribe((data: any) => {
+
+          // Procura o perfume pelo ID
+          const produto = data.find(
+            (p: any) => p.id == id
+          );
+
+          // Se encontrar, preenche o formulário
+          if (produto) {
+            this.novoPerfume = produto;
+          }
+
+        });
+
     }
+
   }
 
+  // Captura a imagem selecionada no input file
   selecionarImagem(event: any) {
+
     const arquivo = event.target.files[0];
-    if (arquivo) this.novoPerfume.imagem = '/' + arquivo.name;
+
+    if (arquivo) {
+      // Salva apenas o nome da imagem
+      this.novoPerfume.imagem = '/' + arquivo.name;
+    }
+
   }
 
+  // Função principal: cria ou atualiza perfume
   cadastrarPerfume() {
+
+    // ---------------- EDITAR ----------------
     if (this.idEditando) {
-      this.perfumeService.atualizarPerfume(this.idEditando, this.novoPerfume).subscribe(() => {
-        alert('Produto atualizado com sucesso!');
-        this.router.navigate(['/product-crud']);
-      });
-    } else {
-      this.perfumeService.adicionarPerfume(this.novoPerfume).subscribe(() => {
-        alert('Perfume cadastrado com sucesso!');
-        this.novoPerfume = { nome: '', marca: '', precoAntigo: 0, precoAtual: 0, imagem: '' };
-      });
+
+      this.perfumeService
+        .atualizarPerfume(this.idEditando, this.novoPerfume)
+        .subscribe(() => {
+
+          alert('Produto atualizado com sucesso!');
+
+          // Volta para home após editar
+          window.location.href = '/home';
+
+
+        });
+
     }
+
+    // ---------------- CRIAR ----------------
+    else {
+
+      this.perfumeService
+        .adicionarPerfume(this.novoPerfume)
+        .subscribe(() => {
+
+          alert('Perfume cadastrado com sucesso!');
+
+          // Vai para home após cadastrar
+          window.location.href = '/home';
+
+        });
+
+    }
+
   }
+
 }

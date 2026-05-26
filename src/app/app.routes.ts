@@ -9,7 +9,7 @@ import { AboutUs } from './pages/about-us/about-us';
 import { ProductRegister } from './pages/product-register/product-register';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: Home },
     { path: 'login', component: Login },
     { path: 'admin-page', component: AdminPage },
